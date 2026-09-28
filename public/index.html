@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in — Smart Health Connect</title>
+  <meta name="description" content="Book doctors and lab tests, check symptoms with the AI assistant and find blood — in one place.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="auth">
+    <section class="auth-side">
+      <a class="brand" href="/" style="padding:0">
+        <span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
+        <span class="brand-name">Smart Health Connect<small>AI-assisted healthcare</small></span>
+      </a>
+      <h1>Your doctor, lab and blood bank in one place.</h1>
+      <p class="lead">Check symptoms with the AI assistant, book a doctor or a test, download your reports, and find blood when it matters.</p>
+      <div class="modules" id="modules"></div>
+      <p class="auth-foot">A BCA first-year project at CHRIST (Deemed to be University), Delhi NCR</p>
+    </section>
+
+    <main class="auth-main">
+      <div class="auth-card" id="card"></div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

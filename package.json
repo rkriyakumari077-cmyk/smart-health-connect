@@ -1,0 +1,23 @@
+{
+  "name": "smart-health-connect",
+  "version": "1.0.0",
+  "description": "AI-assisted doctor appointment, lab test booking and blood bank management system",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "seed": "node --disable-warning=ExperimentalWarning server/db/seed.js --reset",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/api.test.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "jspdf": "^4.2.1"
+  },
+  "optionalDependencies": {
+    "mysql2": "^3.11.5"
+  },
+  "license": "MIT"
+}
