@@ -3,7 +3,7 @@
 checkLogin('admin');
 showNavbar('admin', 'admin.html');
 
-const TABS = ['dashboard', 'doctors', 'lab', 'blood', 'reports'];
+const TABS = ['dashboard', 'patients', 'doctors', 'lab', 'blood', 'reports'];
 
 // Shows one section and hides the others
 function showTab(name) {
@@ -16,6 +16,7 @@ function showTab(name) {
   document.getElementById('page-message').innerHTML = '';
 
   if (name === 'dashboard') loadStats();
+  if (name === 'patients') loadPatients();
   if (name === 'doctors') loadDoctors();
   if (name === 'lab') loadLab();
   if (name === 'blood') loadBlood();
@@ -41,6 +42,8 @@ async function loadStats() {
 
   document.getElementById('stats').innerHTML =
     card(s.patients, 'Registered patients') +
+    card(s.newPatientsToday, 'New sign-ups today') +
+    card(s.loggedInToday, 'Patients logged in today') +
     card(s.doctors, 'Doctors') +
     card(s.appointmentsToday, 'Appointments today') +
     card(s.testsPending, 'Lab tests pending') +
@@ -49,6 +52,30 @@ async function loadStats() {
     card(s.openRequests, 'Open blood requests', s.openRequests > 0) +
     card(s.donorsToVerify, 'Donors to verify', s.donorsToVerify > 0) +
     card(s.aiConsults, 'AI consultations');
+}
+
+// ================= Patients =================
+async function loadPatients() {
+  const patients = await api('/api/patients');
+  const today = todayText();
+  const newToday = patients.filter((p) => p.joinedOn === today).length;
+  document.getElementById('patient-summary').textContent =
+    patients.length + ' patients in total · ' + newToday + ' signed up today';
+
+  let rows = '';
+  for (const p of patients) {
+    rows += `<tr>
+      <td><b>${esc(p.name)}</b>${p.joinedOn === today ? ' <span class="badge green">New</span>' : ''}<br><span class="muted">${esc(p.email)}</span></td>
+      <td>${esc(p.phone || '-')}<br><span class="muted">${esc(p.city || '')}</span></td>
+      <td>${esc(p.bloodGroup || '-')}</td>
+      <td>${p.joinedOn ? formatDate(p.joinedOn) : '-'}</td>
+      <td>${esc(p.lastLogin || 'Never')}<br><span class="muted">${p.loginCount || 0} logins</span></td>
+    </tr>`;
+  }
+  document.getElementById('patient-list').innerHTML = `
+    <div class="table-box"><table>
+      <tr><th>Patient</th><th>Phone / City</th><th>Blood group</th><th>Joined</th><th>Last login</th></tr>${rows}
+    </table></div>`;
 }
 
 // ================= Doctors =================

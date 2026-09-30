@@ -15,6 +15,7 @@
 
     <div class="admin-tabs">
       <button id="tab-dashboard" class="active" onclick="showTab('dashboard')">Dashboard</button>
+      <button id="tab-patients" onclick="showTab('patients')">Patients</button>
       <button id="tab-doctors" onclick="showTab('doctors')">Doctors</button>
       <button id="tab-lab" onclick="showTab('lab')">Lab Tests</button>
       <button id="tab-blood" onclick="showTab('blood')">Blood Bank</button>
@@ -25,6 +26,15 @@
     <!-- ===== Dashboard ===== -->
     <div id="section-dashboard">
       <div class="grid" id="stats">Loading...</div>
+    </div>
+
+    <!-- ===== Patients ===== -->
+    <div id="section-patients" class="hidden">
+      <div class="card">
+        <h2>Registered patients</h2>
+        <p class="muted" id="patient-summary"></p>
+        <div id="patient-list"></div>
+      </div>
     </div>
 
     <!-- ===== Doctors ===== -->

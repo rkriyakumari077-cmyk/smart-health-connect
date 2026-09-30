@@ -20,7 +20,18 @@ router.get('/stats', loginRequired('admin'), (req, res) => {
     openRequests: data.bloodRequests.filter((r) => r.status === 'Pending' || r.status === 'Approved').length,
     donorsToVerify: data.donors.filter((d) => !d.verified).length,
     aiConsults: data.aiConsultLogs.length,
+    newPatientsToday: data.patients.filter((p) => p.joinedOn === today()).length,
+    loggedInToday: data.patients.filter((p) => p.lastLogin && p.lastLogin.startsWith(today())).length,
   });
+});
+
+// GET /api/patients - every registered patient, newest first (without passwords)
+router.get('/patients', loginRequired('admin'), (req, res) => {
+  const list = data.patients.map((p) => {
+    const { password, ...details } = p;
+    return details;
+  });
+  res.json(list.reverse());
 });
 
 // POST /api/doctors - admin adds a doctor (the doctor can log in with this email)

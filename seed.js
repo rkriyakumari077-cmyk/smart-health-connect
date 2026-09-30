@@ -20,11 +20,11 @@ function createSampleData() {
     ],
 
     patients: [
-      { id: 1, name: 'Ananya Verma', email: 'patient@demo.in', password, phone: '9876543210', gender: 'Female', dob: '2004-03-12', bloodGroup: 'B+', city: 'Noida' },
-      { id: 2, name: 'Rahul Khanna', email: 'rahul@demo.in', password, phone: '9899011122', gender: 'Male', dob: '1988-07-02', bloodGroup: 'O+', city: 'Delhi' },
-      { id: 3, name: 'Sunita Devi', email: 'sunita@demo.in', password, phone: '9811223344', gender: 'Female', dob: '1966-01-20', bloodGroup: 'A+', city: 'Noida' },
-      { id: 4, name: 'Mohammed Imran', email: 'imran@demo.in', password, phone: '9810055667', gender: 'Male', dob: '1995-11-08', bloodGroup: 'B-', city: 'Ghaziabad' },
-      { id: 5, name: 'Pooja Sharma', email: 'pooja@demo.in', password, phone: '9958123456', gender: 'Female', dob: '2001-05-30', bloodGroup: 'AB+', city: 'Noida' },
+      { id: 1, name: 'Ananya Verma', email: 'patient@demo.in', password, phone: '9876543210', gender: 'Female', dob: '2004-03-12', bloodGroup: 'B+', city: 'Noida', joinedOn: addDays(t, -20) },
+      { id: 2, name: 'Rahul Khanna', email: 'rahul@demo.in', password, phone: '9899011122', gender: 'Male', dob: '1988-07-02', bloodGroup: 'O+', city: 'Delhi', joinedOn: addDays(t, -15) },
+      { id: 3, name: 'Sunita Devi', email: 'sunita@demo.in', password, phone: '9811223344', gender: 'Female', dob: '1966-01-20', bloodGroup: 'A+', city: 'Noida', joinedOn: addDays(t, -12) },
+      { id: 4, name: 'Mohammed Imran', email: 'imran@demo.in', password, phone: '9810055667', gender: 'Male', dob: '1995-11-08', bloodGroup: 'B-', city: 'Ghaziabad', joinedOn: addDays(t, -6) },
+      { id: 5, name: 'Pooja Sharma', email: 'pooja@demo.in', password, phone: '9958123456', gender: 'Female', dob: '2001-05-30', bloodGroup: 'AB+', city: 'Noida', joinedOn: addDays(t, -3) },
     ],
 
     doctors: [

@@ -45,7 +45,7 @@ npm start
 | **Doctor Appointments** | Search doctors by speciality, choose a date and free time slot, book, reschedule or cancel. The doctor writes the prescription and completes the visit. The patient downloads the prescription as PDF and rates the visit. Reminders show on the patient's home page for today and tomorrow. |
 | **Lab Tests** | Book a test with home collection or a lab visit. The admin marks the sample collected and enters the results. Values outside the normal range are flagged Low / High. The patient views and downloads the report as PDF. |
 | **Blood Bank** | Live blood stock for every group, donor search (with compatible groups), emergency blood requests, donor registration with eligibility rules (age 18–65, weight 45 kg+, 90 days since last donation). The admin verifies donors, records donations and fulfils requests (stock updates automatically). |
-| **Admin Panel** | Dashboard numbers, add/remove doctors and lab tests, lab reports, blood stock, requests, donors, AI logs and feedback. |
+| **Admin Panel** | Dashboard numbers (including new sign-ups and logins today), a list of all registered patients, add/remove doctors and lab tests, lab reports, blood stock, requests, donors, AI logs and feedback. |
 | **Health Records** | All prescriptions and lab reports of a patient in one place. |
 
 ---
@@ -135,7 +135,7 @@ smart-health-connect/
 | GET / POST | /api/donors, GET /api/my-donor | all / patient | donors |
 | PUT | /api/donors/:id/verify, /donated | admin | verify, record donation |
 | GET / POST / PUT | /api/blood-requests | patient, admin | emergency requests |
-| GET | /api/stats, /api/feedback | admin | dashboard |
+| GET | /api/stats, /api/feedback, /api/patients | admin | dashboard, feedback, patient list |
 | POST / DELETE | /api/doctors, /api/lab-tests | admin | add or remove |
 
 ---

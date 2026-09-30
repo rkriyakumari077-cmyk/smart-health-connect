@@ -2,7 +2,7 @@
 const express = require('express');
 const crypto = require('crypto');
 const { data, save, nextId } = require('../database');
-const { hashPassword } = require('../helpers');
+const { hashPassword, today, timeNow } = require('../helpers');
 
 const router = express.Router();
 
@@ -23,6 +23,11 @@ router.post('/login', (req, res) => {
   if (!user || user.password !== hashPassword(String(password))) {
     return res.status(401).json({ error: 'Wrong email or password' });
   }
+
+  // Remember when this user last logged in and how many times
+  user.lastLogin = today() + ' ' + timeNow();
+  user.loginCount = (user.loginCount || 0) + 1;
+  save();
 
   const token = crypto.randomBytes(16).toString('hex');
   sessions[token] = { role, id: user.id };
@@ -53,6 +58,9 @@ router.post('/signup', (req, res) => {
     dob: dob || '',
     bloodGroup: bloodGroup || '',
     city: city || '',
+    joinedOn: today(),                     // the day they signed up
+    lastLogin: today() + ' ' + timeNow(),  // signing up also logs them in
+    loginCount: 1,
   };
   data.patients.push(patient);
   save();
