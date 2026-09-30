@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Doctor - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>Book a Doctor</h1>
+
+    <!-- Booking box: shown after clicking "Book" on a doctor -->
+    <div class="card hidden" id="booking-box">
+      <h2 id="booking-title">Book appointment</h2>
+      <p class="muted" id="booking-info"></p>
+
+      <div class="form-row">
+        <div>
+          <label for="booking-date">Choose a date</label>
+          <input type="date" id="booking-date">
+        </div>
+        <div>
+          <label for="booking-reason">Reason for visit</label>
+          <input id="booking-reason" placeholder="Example: fever for 3 days">
+        </div>
+      </div>
+
+      <label>Choose a time</label>
+      <div class="slots" id="slots"><p class="muted">Choose a date first.</p></div>
+
+      <div id="booking-message"></div>
+      <br>
+      <button class="btn" id="confirm-button" onclick="confirmBooking()" disabled>Confirm booking</button>
+      <button class="btn btn-light" onclick="closeBooking()">Cancel</button>
+    </div>
+
+    <div class="card">
+      <label for="specialization">Filter by speciality</label>
+      <select id="specialization" onchange="loadDoctors()">
+        <option value="">All specialities</option>
+      </select>
+    </div>
+
+    <div class="grid" id="doctor-list">Loading...</div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/doctors.js"></script>
+</body>
+</html>

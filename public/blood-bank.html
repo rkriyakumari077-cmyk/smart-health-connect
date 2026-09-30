@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Bank - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>Blood Bank</h1>
+
+    <div class="two-columns">
+      <div class="card">
+        <h2>Blood available now</h2>
+        <p class="muted">Units in our hospital blood bank. Red bars are low (under 5 units).</p>
+        <div id="stock">Loading...</div>
+        <p id="my-group" class="muted"></p>
+      </div>
+
+      <div class="card">
+        <h2>Find a donor</h2>
+        <div class="form-row">
+          <div>
+            <label for="search-group">Blood group needed</label>
+            <select id="search-group">
+              <option value="">Any group</option>
+              <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+            </select>
+          </div>
+          <div>
+            <label for="search-city">City</label>
+            <input id="search-city" placeholder="Example: Noida">
+          </div>
+        </div>
+        <label><input type="checkbox" id="search-compatible" checked style="width:auto"> Also show compatible blood groups</label>
+        <button class="btn" onclick="searchDonors()">Search</button>
+        <div id="donor-results"></div>
+      </div>
+    </div>
+
+    <div class="two-columns">
+      <div class="card">
+        <h2>Emergency blood request</h2>
+        <form id="request-form">
+          <div class="form-row">
+            <div>
+              <label for="r-name">Patient name</label>
+              <input id="r-name" required>
+            </div>
+            <div>
+              <label for="r-group">Blood group</label>
+              <select id="r-group" required>
+                <option value="">Select</option>
+                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+              </select>
+            </div>
+            <div>
+              <label for="r-units">Units needed</label>
+              <input type="number" id="r-units" min="1" max="10" value="1">
+            </div>
+            <div>
+              <label for="r-urgency">Urgency</label>
+              <select id="r-urgency">
+                <option>Normal</option>
+                <option selected>Urgent</option>
+                <option>Critical</option>
+              </select>
+            </div>
+          </div>
+          <label for="r-hospital">Hospital</label>
+          <input id="r-hospital" required>
+          <label for="r-phone">Contact number</label>
+          <input id="r-phone" required>
+          <div id="request-message"></div>
+          <br>
+          <button type="submit" class="btn btn-red">Send request</button>
+        </form>
+        <h3 style="margin-top: 20px">My requests</h3>
+        <div id="my-requests"></div>
+      </div>
+
+      <div class="card">
+        <h2>Become a blood donor</h2>
+        <div id="donor-section">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/blood-bank.js"></script>
+</body>
+</html>

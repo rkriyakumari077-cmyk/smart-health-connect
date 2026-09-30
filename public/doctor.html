@@ -1,23 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Doctor — Smart Health Connect</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor - Smart Health Connect</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="loading" role="status"><div class="spinner"></div></div>
-  <script src="/js/api.js"></script>
-  <script src="/js/ui.js"></script>
-  <script src="/js/shell.js"></script>
-  <script src="/vendor/jspdf.umd.min.js"></script>
-  <script src="/js/pdf.js"></script>
-  <script src="/js/views.js"></script>
-  <script src="/js/doctor.js"></script>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1 id="doctor-name">My Appointments</h1>
+    <div id="page-message"></div>
+
+    <div class="grid">
+      <div class="card stat"><b id="count-today">0</b><span class="muted">Patients today</span></div>
+      <div class="card stat"><b id="count-waiting">0</b><span class="muted">Waiting today</span></div>
+      <div class="card stat"><b id="count-rating">-</b><span class="muted">My rating</span></div>
+    </div>
+
+    <!-- Prescription form: shown after clicking "Write prescription" -->
+    <div class="card hidden" id="prescription-box">
+      <h2>Write prescription</h2>
+      <p class="muted" id="patient-info"></p>
+      <form id="prescription-form">
+        <label for="diagnosis">Diagnosis</label>
+        <input id="diagnosis" required placeholder="Example: Viral fever">
+
+        <label for="medicines">Medicines (one per line: name - how often - how many days)</label>
+        <textarea id="medicines" rows="4" placeholder="Paracetamol 650 mg - 3 times a day - 3 days"></textarea>
+
+        <label for="advice">Advice</label>
+        <textarea id="advice" rows="2" placeholder="Example: Rest and drink plenty of water"></textarea>
+
+        <div id="prescription-message"></div>
+        <br>
+        <button type="submit" class="btn">Save and complete visit</button>
+        <button type="button" class="btn btn-light" onclick="closeBox('prescription-box')">Close</button>
+      </form>
+    </div>
+
+    <!-- View a saved prescription -->
+    <div class="card hidden" id="view-box"></div>
+
+    <div class="card">
+      <div class="admin-tabs">
+        <button id="filter-today" class="active" onclick="setFilter('today')">Today</button>
+        <button id="filter-upcoming" onclick="setFilter('upcoming')">Upcoming</button>
+        <button id="filter-completed" onclick="setFilter('completed')">Completed</button>
+        <button id="filter-all" onclick="setFilter('all')">All</button>
+      </div>
+      <div id="appointment-list">Loading...</div>
+    </div>
+  </div>
+
+  <script src="/jspdf/jspdf.umd.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/doctor.js"></script>
 </body>
 </html>

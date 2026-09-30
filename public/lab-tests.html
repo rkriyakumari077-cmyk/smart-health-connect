@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Tests - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>Lab Tests</h1>
+    <div id="page-message"></div>
+
+    <!-- Booking box: shown after clicking "Book" on a test -->
+    <div class="card hidden" id="booking-box">
+      <h2 id="booking-title">Book test</h2>
+      <p class="muted" id="booking-info"></p>
+      <div class="form-row">
+        <div>
+          <label for="test-date">Date</label>
+          <input type="date" id="test-date">
+        </div>
+        <div>
+          <label for="time-slot">Time</label>
+          <select id="time-slot"></select>
+        </div>
+        <div>
+          <label for="collection">Sample collection</label>
+          <select id="collection" onchange="toggleAddress()">
+            <option value="Home">Home collection</option>
+            <option value="Lab">Lab visit</option>
+          </select>
+        </div>
+        <div id="address-field">
+          <label for="address">Address for home collection</label>
+          <input id="address" placeholder="House no., street, city">
+        </div>
+      </div>
+      <div id="booking-message"></div>
+      <br>
+      <button class="btn" onclick="confirmTestBooking()">Confirm booking</button>
+      <button class="btn btn-light" onclick="closeBox('booking-box')">Cancel</button>
+    </div>
+
+    <!-- Report box -->
+    <div class="card hidden" id="report-box"></div>
+
+    <div class="card">
+      <h2>My test bookings</h2>
+      <div id="my-bookings">Loading...</div>
+    </div>
+
+    <h2>Available tests</h2>
+    <div class="grid" id="test-list">Loading...</div>
+  </div>
+
+  <script src="/jspdf/jspdf.umd.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/lab-tests.js"></script>
+</body>
+</html>

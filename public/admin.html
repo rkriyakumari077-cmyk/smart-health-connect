@@ -1,23 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin — Smart Health Connect</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Smart Health Connect</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="loading" role="status"><div class="spinner"></div></div>
-  <script src="/js/api.js"></script>
-  <script src="/js/ui.js"></script>
-  <script src="/js/shell.js"></script>
-  <script src="/vendor/jspdf.umd.min.js"></script>
-  <script src="/js/pdf.js"></script>
-  <script src="/js/views.js"></script>
-  <script src="/js/admin.js"></script>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>Admin Panel</h1>
+
+    <div class="admin-tabs">
+      <button id="tab-dashboard" class="active" onclick="showTab('dashboard')">Dashboard</button>
+      <button id="tab-doctors" onclick="showTab('doctors')">Doctors</button>
+      <button id="tab-lab" onclick="showTab('lab')">Lab Tests</button>
+      <button id="tab-blood" onclick="showTab('blood')">Blood Bank</button>
+      <button id="tab-reports" onclick="showTab('reports')">AI Logs &amp; Feedback</button>
+    </div>
+    <div id="page-message"></div>
+
+    <!-- ===== Dashboard ===== -->
+    <div id="section-dashboard">
+      <div class="grid" id="stats">Loading...</div>
+    </div>
+
+    <!-- ===== Doctors ===== -->
+    <div id="section-doctors" class="hidden">
+      <div class="card">
+        <h2>Add a doctor</h2>
+        <form id="doctor-form">
+          <div class="form-row">
+            <div><label for="doc-name">Name</label><input id="doc-name" required placeholder="Dr. ..."></div>
+            <div><label for="doc-special">Specialization</label><select id="doc-special" required></select></div>
+            <div><label for="doc-email">Email (for login)</label><input type="email" id="doc-email" required></div>
+            <div><label for="doc-password">Password</label><input id="doc-password" required value="welcome123"></div>
+            <div><label for="doc-qual">Qualification</label><input id="doc-qual" placeholder="MBBS, MD"></div>
+            <div><label for="doc-exp">Experience (years)</label><input type="number" id="doc-exp" value="5"></div>
+            <div><label for="doc-fee">Fee (₹)</label><input type="number" id="doc-fee" value="500"></div>
+          </div>
+          <br>
+          <button type="submit" class="btn">Add doctor</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>All doctors</h2>
+        <div id="doctor-list"></div>
+      </div>
+    </div>
+
+    <!-- ===== Lab tests ===== -->
+    <div id="section-lab" class="hidden">
+      <!-- Report form: shown after clicking "Enter report" -->
+      <div class="card hidden" id="report-box">
+        <h2 id="report-title">Enter report</h2>
+        <p class="muted" id="report-info"></p>
+        <div id="report-fields"></div>
+        <label for="report-remarks">Remarks (optional)</label>
+        <input id="report-remarks" placeholder="Leave empty to write a summary automatically">
+        <br><br>
+        <button class="btn" onclick="saveReport()">Save report</button>
+        <button class="btn btn-light" onclick="document.getElementById('report-box').classList.add('hidden')">Close</button>
+      </div>
+
+      <div class="card">
+        <h2>Test bookings</h2>
+        <div id="booking-list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Add a lab test</h2>
+        <form id="test-form">
+          <div class="form-row">
+            <div><label for="t-name">Test name</label><input id="t-name" required></div>
+            <div><label for="t-price">Price (₹)</label><input type="number" id="t-price" required></div>
+            <div><label for="t-param">What is measured</label><input id="t-param" required placeholder="Example: Calcium"></div>
+            <div><label for="t-unit">Unit</label><input id="t-unit" placeholder="mg/dL"></div>
+            <div><label for="t-min">Normal from</label><input type="number" step="any" id="t-min" required></div>
+            <div><label for="t-max">Normal to</label><input type="number" step="any" id="t-max" required></div>
+          </div>
+          <label><input type="checkbox" id="t-home" checked style="width:auto"> Home collection available</label>
+          <button type="submit" class="btn">Add test</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>All lab tests</h2>
+        <div id="test-list"></div>
+      </div>
+    </div>
+
+    <!-- ===== Blood bank ===== -->
+    <div id="section-blood" class="hidden">
+      <div class="card">
+        <h2>Emergency blood requests</h2>
+        <div id="request-list"></div>
+      </div>
+      <div class="two-columns">
+        <div class="card">
+          <h2>Blood stock</h2>
+          <p class="muted">Change the number and click Save after a stock count.</p>
+          <div id="stock-list"></div>
+        </div>
+        <div class="card">
+          <h2>Donors</h2>
+          <div id="donor-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI logs and feedback ===== -->
+    <div id="section-reports" class="hidden">
+      <div class="card">
+        <h2>AI Health Assistant logs</h2>
+        <div id="ai-logs"></div>
+      </div>
+      <div class="card">
+        <h2>Patient feedback</h2>
+        <div id="feedback-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

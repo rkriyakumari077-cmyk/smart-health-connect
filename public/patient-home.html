@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <div class="welcome">
+      <div>
+        <h1 id="welcome-name">Hello</h1>
+        <p>Not feeling well? Tell our AI assistant your symptoms and it will suggest the right doctor.</p>
+      </div>
+      <a href="ai-assistant.html" class="btn btn-mint">Check my symptoms</a>
+    </div>
+
+    <!-- Automatic reminders for today and tomorrow -->
+    <div id="reminders"></div>
+
+    <div class="grid">
+      <a href="ai-assistant.html" class="card feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Health Assistant</h3>
+        <p class="muted">Enter your symptoms and get advice, urgency and the right specialist.</p>
+      </a>
+      <a href="doctors.html" class="card feature-card">
+        <div class="feature-icon">🩺</div>
+        <h3>Book a Doctor</h3>
+        <p class="muted">Search doctors by speciality and book a time slot.</p>
+      </a>
+      <a href="lab-tests.html" class="card feature-card">
+        <div class="feature-icon">🧪</div>
+        <h3>Lab Tests</h3>
+        <p class="muted">Book a test with home collection or a lab visit.</p>
+      </a>
+      <a href="blood-bank.html" class="card feature-card">
+        <div class="feature-icon">🩸</div>
+        <h3>Blood Bank</h3>
+        <p class="muted">Check blood stock, find donors, request blood.</p>
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>My upcoming appointments</h2>
+      <div id="upcoming">Loading...</div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/patient-home.js"></script>
+</body>
+</html>

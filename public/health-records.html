@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Records - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>My Health Records</h1>
+    <p class="muted">All your prescriptions and lab reports in one place. Download them as PDF to share with any doctor.</p>
+
+    <div class="card">
+      <h2>Prescriptions</h2>
+      <div id="prescriptions">Loading...</div>
+    </div>
+
+    <div class="card">
+      <h2>Lab Reports</h2>
+      <div id="reports">Loading...</div>
+    </div>
+  </div>
+
+  <script src="/jspdf/jspdf.umd.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/health-records.js"></script>
+</body>
+</html>

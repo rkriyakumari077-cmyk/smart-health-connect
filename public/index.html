@@ -1,36 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in — Smart Health Connect</title>
-  <meta name="description" content="Book doctors and lab tests, check symptoms with the AI assistant and find blood — in one place.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Health Connect - Login</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="auth">
-    <section class="auth-side">
-      <a class="brand" href="/" style="padding:0">
-        <span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
-        <span class="brand-name">Smart Health Connect<small>AI-assisted healthcare</small></span>
-      </a>
-      <h1>Your doctor, lab and blood bank in one place.</h1>
-      <p class="lead">Check symptoms with the AI assistant, book a doctor or a test, download your reports, and find blood when it matters.</p>
-      <div class="modules" id="modules"></div>
-      <p class="auth-foot">A BCA first-year project at CHRIST (Deemed to be University), Delhi NCR</p>
-    </section>
+  <div class="login-page">
 
-    <main class="auth-main">
-      <div class="auth-card" id="card"></div>
-    </main>
+    <div class="login-left">
+      <h1>Smart Health Connect</h1>
+      <p>Doctor appointments, lab tests and blood bank in one place, with an AI health assistant.</p>
+      <ul>
+        <li>Check your symptoms with the AI Health Assistant</li>
+        <li>Book a doctor and get your prescription online</li>
+        <li>Book lab tests and download reports</li>
+        <li>Find blood donors in an emergency</li>
+      </ul>
+    </div>
+
+    <div class="login-right">
+      <div class="login-box">
+
+        <!-- Login form -->
+        <div id="login-section">
+          <h2>Login</h2>
+          <div class="tabs">
+            <button id="tab-patient" class="active" onclick="selectRole('patient')">Patient</button>
+            <button id="tab-doctor" onclick="selectRole('doctor')">Doctor</button>
+            <button id="tab-admin" onclick="selectRole('admin')">Admin</button>
+          </div>
+
+          <form id="login-form">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+
+            <div id="login-message"></div>
+            <br>
+            <button type="submit" class="btn" style="width: 100%">Login</button>
+          </form>
+
+          <p id="signup-link">New patient? <a href="#" onclick="showSignup()">Create an account</a></p>
+
+          <div class="demo-box">
+            <b>Demo accounts</b> (password: demo1234)<br>
+            Patient: patient@demo.in<br>
+            Doctor: doctor@demo.in<br>
+            Admin: admin@demo.in<br><br>
+            <button class="btn btn-small btn-light" onclick="fillDemo()">Fill demo account</button>
+          </div>
+        </div>
+
+        <!-- Sign up form (hidden until "Create an account" is clicked) -->
+        <div id="signup-section" class="hidden">
+          <h2>Create patient account</h2>
+          <form id="signup-form">
+            <label for="s-name">Full name</label>
+            <input id="s-name" required>
+
+            <div class="form-row">
+              <div>
+                <label for="s-email">Email</label>
+                <input type="email" id="s-email" required>
+              </div>
+              <div>
+                <label for="s-password">Password (min 6)</label>
+                <input type="password" id="s-password" required minlength="6">
+              </div>
+              <div>
+                <label for="s-phone">Phone</label>
+                <input id="s-phone">
+              </div>
+              <div>
+                <label for="s-dob">Date of birth</label>
+                <input type="date" id="s-dob">
+              </div>
+              <div>
+                <label for="s-gender">Gender</label>
+                <select id="s-gender">
+                  <option value="">Select</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="s-blood">Blood group</label>
+                <select id="s-blood">
+                  <option value="">Don't know</option>
+                  <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                  <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="s-city">City</label>
+            <input id="s-city">
+
+            <div id="signup-message"></div>
+            <br>
+            <button type="submit" class="btn" style="width: 100%">Create account</button>
+          </form>
+          <p>Already registered? <a href="#" onclick="showLogin()">Login</a></p>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/ui.js"></script>
-  <script src="/js/auth.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>

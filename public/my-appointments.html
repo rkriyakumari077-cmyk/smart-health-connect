@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Appointments - Smart Health Connect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="navbar"></nav>
+
+  <div class="container">
+    <h1>My Appointments</h1>
+    <div id="page-message"></div>
+
+    <!-- Reschedule box -->
+    <div class="card hidden" id="reschedule-box">
+      <h2>Reschedule appointment</h2>
+      <p class="muted" id="reschedule-info"></p>
+      <label for="new-date">New date</label>
+      <input type="date" id="new-date">
+      <label>New time</label>
+      <div class="slots" id="new-slots"></div>
+      <div id="reschedule-message"></div>
+      <br>
+      <button class="btn" id="save-reschedule" onclick="saveReschedule()" disabled>Save new time</button>
+      <button class="btn btn-light" onclick="closeBox('reschedule-box')">Close</button>
+    </div>
+
+    <!-- Prescription box -->
+    <div class="card hidden" id="prescription-box"></div>
+
+    <!-- Feedback box -->
+    <div class="card hidden" id="feedback-box">
+      <h2>Rate your visit</h2>
+      <p class="muted" id="feedback-info"></p>
+      <label for="rating">Rating</label>
+      <select id="rating">
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Good</option>
+        <option value="3">⭐⭐⭐ Okay</option>
+        <option value="2">⭐⭐ Poor</option>
+        <option value="1">⭐ Very poor</option>
+      </select>
+      <label for="comment">Comment</label>
+      <textarea id="comment" rows="2"></textarea>
+      <div id="feedback-message"></div>
+      <br>
+      <button class="btn" onclick="saveFeedback()">Submit rating</button>
+      <button class="btn btn-light" onclick="closeBox('feedback-box')">Close</button>
+    </div>
+
+    <div class="card">
+      <h2>Upcoming</h2>
+      <div id="upcoming-list">Loading...</div>
+    </div>
+
+    <div class="card">
+      <h2>Past and cancelled</h2>
+      <div id="past-list">Loading...</div>
+    </div>
+  </div>
+
+  <script src="/jspdf/jspdf.umd.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/my-appointments.js"></script>
+</body>
+</html>
