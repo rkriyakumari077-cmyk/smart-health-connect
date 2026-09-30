@@ -25,6 +25,13 @@ app.use('/api', require('./routes/lab'));           // lab tests, bookings, repo
 app.use('/api', require('./routes/blood'));         // blood stock, donors, blood requests
 app.use('/api', require('./routes/admin'));         // admin dashboard numbers
 
-app.listen(PORT, () => {
+app.listen(PORT, (error) => {
+  // If the port is already used (for example the server is already running
+  // in another terminal), Express gives us an error here.
+  if (error) {
+    console.log('Could not start the server: ' + error.message);
+    console.log('Is it already running in another terminal? Stop that one with Ctrl + C, then run npm start again.');
+    process.exit(1);
+  }
   console.log('Smart Health Connect is running at http://localhost:' + PORT);
 });
